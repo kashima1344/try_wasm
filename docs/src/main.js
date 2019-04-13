@@ -1,9 +1,7 @@
-const { greet,alloc,deallc,filter } = wasm_bindgen;
+const { alloc, deallc, filter } = wasm_bindgen;
 
 function runApp() {
-  
-  greet('TEST');
-  alert("hoge"+wasm_bindgen.wasm.memory.buffer);
+  console.log("Initialized");
 }
 
 // Load and instantiate the wasm file, and we specify the source of the wasm

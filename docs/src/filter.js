@@ -4,6 +4,7 @@ var filteredImageData = null;
 var ptr = null;
 
 function doFilter() {
+    performance.mark("wasm_start");
 
     var canvas = document.getElementById("canvas1");
     var ctx = canvas.getContext("2d");
@@ -33,6 +34,11 @@ function doFilter() {
     // フィルタ処理後の画像をコピー
     ctx.putImageData(filteredImageData, 0, 0);
 
+    performance.mark("wasm_end");
+    performance.measure("wasm", "wasm_start", "wasm_end");
+    result = performance.getEntriesByName('wasm');
+
+    document.getElementById('result_wasm').textContent = "success: " + result[0];
 }
 
 const COLOR_SUM = 765.0;
@@ -41,6 +47,7 @@ const SEPIA_G = 200.0;
 const SEPIA_B = 118.0;
 
 function doFilterJS() {
+    performance.mark("js_start");
 
     var canvas = document.getElementById("canvas1");
     var ctx = canvas.getContext("2d");
@@ -64,5 +71,11 @@ function doFilterJS() {
 
     // フィルタ処理後の画像をコピー
     ctx.putImageData(currentImage, 0, 0);
+
+    performance.mark("js_end");
+    performance.measure("js", "js_start", "js_end");
+    result = performance.getEntriesByName('js');
+
+    document.getElementById('result_js').textContent = "success:" + result[0];
 
 }
