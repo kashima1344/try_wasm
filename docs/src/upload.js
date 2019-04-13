@@ -30,8 +30,8 @@ function preview(ele) {
 // https://qiita.com/PG0721/items/599ba2921b8339700fe3
 function drawImageAspect(ctx, img) {
 
-    var canvasAspect = ctx.canvas.width / ctx.canvas.height, // canvasのアスペクト比
-    var imgAspect = img.width / img.height, // 画像のアスペクト比
+    var canvasAspect = ctx.canvas.width / ctx.canvas.height; // canvasのアスペクト比
+    var imgAspect = img.width / img.height; // 画像のアスペクト比
     var left, top, width, height;
 
     ctx.fillStyle = "black";
