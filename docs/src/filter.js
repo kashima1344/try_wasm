@@ -1,4 +1,3 @@
-sharedBuffer
 
 var sharedBuffer = null;
 var filteredImageData = null;
