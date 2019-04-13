@@ -12,12 +12,17 @@ function preview(ele) {
         'file type: ' + file.type + ', ' +
         'file size: ' + file.size ;
 
-    var ctx = document.getElementById("canvas1").getContext("2d");
-    var img = new Image();
-    img.src = file + "#" + new Date().getTime();
-
-    img.onload = function() {
+    var fr = new FileReader();
+    fr.onload = function() {
+        var canvas = document.getElementById("canvas1");
+        var ctx = canvas.getContext("2d");
+        var img = new Image();
+        img.src = fr.result;  // 読み込んだ画像データをsrcにセット
+        canvas.width = img.width;
+        canvas.height = img.height;
         ctx.drawImage(img, 0, 0);
     }
+    fr.readAsDataURL(file);  // 画像読み込み
+
 }
 
