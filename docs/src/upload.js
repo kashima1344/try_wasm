@@ -6,11 +6,10 @@ function preview(ele) {
     var file = ele.files[0];
     if (!/^image\/(png|jpeg|gif)$/.test(file.type)) return;  // typeプロパティでMIMEタイプを参照
 
-    var img = document.createElement('img');
+    var img = new Image();
     var fr = new FileReader();
     fr.onload = function() {
         img.src = fr.result;  // 読み込んだ画像データをsrcにセット
-        // document.getElementById('preview_field').appendChild(img);
 
         var ctx = document.getElementById("canvas1").getContext("2d");
         ctx.drawImage(img, 0, 0);
