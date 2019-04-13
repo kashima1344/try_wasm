@@ -12,7 +12,7 @@ function preview(ele) {
         img.src = fr.result;  // 読み込んだ画像データをsrcにセット
         // document.getElementById('preview_field').appendChild(img);
 
-        var ctx = document.getElementById("canvas").getContext("2d");
+        var ctx = document.getElementById("canvas1").getContext("2d");
         drawImageAspect(ctx, img);
 
     }
