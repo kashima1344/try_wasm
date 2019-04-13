@@ -7,7 +7,6 @@
   <span id="container"></span>
   <script src="../out/main.js"></script>
   <script src="./main.js"></script>
-  <script src="./upload.js"></script>
 
   <form>
     <input type="file" name="file" onchange="preview(this)" />
@@ -16,8 +15,9 @@
   <hr />
   <b>preview:</b><br />
   <div id="preview_field">
-    <canvas id="canvas1" width="1024" height="760"></canvas>
   </div>
+  <canvas id="canvas1" width="1024" height="760" style="background-color:black;"></canvas>
+  <script src="./upload.js"></script>
 
 </body>
 </html>
