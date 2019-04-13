@@ -42,6 +42,18 @@ __exports.greet = function(arg0) {
     }
 };
 
+__exports.alloc = function(arg0) {
+    return wasm.alloc(arg0);
+};
+
+__exports.dealloc = function(arg0, arg1) {
+    return wasm.dealloc(arg0, arg1);
+};
+
+__exports.filter = function(arg0, arg1, arg2) {
+    return wasm.filter(arg0, arg1, arg2);
+};
+
 __exports.__wbindgen_throw = function(ptr, len) {
     throw new Error(getStringFromWasm(ptr, len));
 };
@@ -49,7 +61,7 @@ __exports.__wbindgen_throw = function(ptr, len) {
                     function init(wasm_path) {
                         return fetch(wasm_path)
                             .then(response => response.arrayBuffer())
-                            .then(buffer => WebAssembly.instantiate(buffer, { './rustc_h_pwh3bh7f10a': __exports }))
+                            .then(buffer => WebAssembly.instantiate(buffer, { './rustc_h_xd0h0n4lrdb': __exports }))
                             .then(({instance}) => {
                                 wasm = init.wasm = instance.exports;
                                 return;
