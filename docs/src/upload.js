@@ -22,7 +22,7 @@ function preview(ele) {
     document.getElementById('preview_field').textContent =
         'file name: ' + file.name + ', ' +
         'file type: ' + file.type + ', ' +
-        'file size: ' + file.size + ;
+        'file size: ' + file.size ;
 }
 
 
