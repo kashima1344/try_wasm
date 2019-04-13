@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <style>
-    body {
-      background-color: rgb(255, 255, 255);
-    }
-  </style>
+<meta charset="utf-8">
 </head>
 <body>
   <span id="container"></span>
   <script src="../out/main.js"></script>
   <script src="./main.js"></script>
+  <script src="./upload.js"></script>
+
+  <form>
+    <input type="file" name="file" onchange="preview(this)" />
+  </form>
+
+  <hr />
+  <b>preview:</b><br />
+  <div id="preview_field"></div>
+
 </body>
 </html>
