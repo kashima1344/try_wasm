@@ -34,3 +34,35 @@ function doFilter() {
     ctx.putImageData(filteredImageData, 0, 0);
 
 }
+
+const COLOR_SUM = 765.0;
+const SEPIA_R = 240.0;
+const SEPIA_G = 200.0;
+const SEPIA_B = 118.0;
+
+function doFilterJS() {
+
+    var canvas = document.getElementById("canvas1");
+    var ctx = canvas.getContext("2d");
+    var width = canvas.width;
+    var height = canvas.height;
+
+    var currentImage = ctx.getImageData(0, 0, width, height);
+
+    var data = currentImage.data;
+    var num = data.length / 4;
+
+    for (var i=0; i<num; i++) {
+        var r = data[i * 4];
+        var g = data[i * 4 + 1];
+        var b = data[i * 4 + 2];
+        var avg = (r + g + b) / COLOR_SUM;
+        data[i * 4] = (SEPIA_R * avg);
+        data[i * 4 + 1] = (SEPIA_G * avg);
+        data[i * 4 + 2] = (SEPIA_B * avg);
+    }
+
+    // フィルタ処理後の画像をコピー
+    ctx.putImageData(currentImage, 0, 0);
+
+}

@@ -9,14 +9,18 @@
   <script src="./main.js"></script>
 
   <form>
-    <input type="file" name="file" onchange="preview(this)" />
-    <button type="button" onclick="doFilter()">Sepia Color</button>
+    <input type="file" name="file" onchange="preview(this)" /><br />
+    <button type="button" onclick="doFilter()">Sepia Color (WASM)</button><br />
+    <button type="button" onclick="doFilterJS()">Sepia Color (JS)</button><br />
   </form>
 
   <hr />
   <b>preview:</b><br />
   <div id="preview_field">
   </div>
+  <hr />
+  <img src="./qr_code.png" >
+
   <canvas id="canvas1" width="1024" height="760" style="background-color:black;"></canvas>
   <script src="./upload.js"></script>
   <script src="./filter.js"></script>
