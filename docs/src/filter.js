@@ -4,6 +4,7 @@ var filteredImageData = null;
 var ptr = null;
 
 function doFilter() {
+	performance.clearMeasures();
     performance.mark("wasm_start");
 
     var canvas = document.getElementById("canvas1");
@@ -47,6 +48,7 @@ const SEPIA_G = 200.0;
 const SEPIA_B = 118.0;
 
 function doFilterJS() {
+	performance.clearMeasures();
     performance.mark("js_start");
 
     var canvas = document.getElementById("canvas1");
