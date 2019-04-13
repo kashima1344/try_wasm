@@ -1,5 +1,6 @@
 // I referred the following blog. Thank you!
 // https://favril.hatenablog.com/entry/20100506/1273143063
+// https://tech-blog.s-yoshiki.com/2018/01/10/
 function preview(ele) {
     if (!ele.files.length) return;  // ファイル未選択
     
@@ -17,10 +18,12 @@ function preview(ele) {
         var canvas = document.getElementById("canvas1");
         var ctx = canvas.getContext("2d");
         var img = new Image();
+        img.onload = function () {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+        }
         img.src = fr.result;  // 読み込んだ画像データをsrcにセット
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.drawImage(img, 0, 0);
     }
     fr.readAsDataURL(file);  // 画像読み込み
 
