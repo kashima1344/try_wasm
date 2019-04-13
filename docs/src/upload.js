@@ -31,7 +31,7 @@ function preview(ele) {
 function drawImageAspect(ctx, img) {
 
     var canvasAspect = ctx.canvas.width / ctx.canvas.height; // canvasのアスペクト比
-    var imgAspect = img.width / img.height; // 画像のアスペクト比
+    var imgAspect = img.naturalWidth / img.naturalHeight ; // 画像のアスペクト比
     var left, top, width, height;
 
     ctx.fillStyle = "black";
@@ -48,5 +48,7 @@ function drawImageAspect(ctx, img) {
         width = ctx.canvas.height * imgAspect;
         left = (ctx.canvas.width - width) / 2;
     }
-    ctx.drawImage(img, 0, 0, img.width, img.height, left, top, width, height);
+    ctx.drawImage(img,
+        0, 0, img.naturalWidth, img.naturalHeight,
+        left, top, width, height);
 }
