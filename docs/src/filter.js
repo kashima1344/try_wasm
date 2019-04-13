@@ -38,7 +38,7 @@ function doFilter() {
     performance.measure("wasm", "wasm_start", "wasm_end");
     result = performance.getEntriesByName('wasm');
 
-    document.getElementById('result_wasm').textContent = "success: " + result[0];
+    document.getElementById('result_wasm').textContent = "success: " + result[0].duration + "(ms)";
 }
 
 const COLOR_SUM = 765.0;
@@ -76,6 +76,6 @@ function doFilterJS() {
     performance.measure("js", "js_start", "js_end");
     result = performance.getEntriesByName('js');
 
-    document.getElementById('result_js').textContent = "success:" + result[0];
+    document.getElementById('result_js').textContent = "success:" + result[0].duration + "(ms)";
 
 }
