@@ -4,7 +4,7 @@ var filteredImageData = null;
 var ptr = null;
 
 function doFilter() {
-	performance.clearMeasures();
+    performance.clearMeasures();
     performance.mark("wasm_start");
 
     var canvas = document.getElementById("canvas1");
@@ -30,16 +30,22 @@ function doFilter() {
     sharedBuffer.set(currentImage.data);
 
     // フィルタを処理
+    performance.mark("wasm_start2");
     filter(ptr, width, height);
+    performance.mark("wasm_end2");
 
     // フィルタ処理後の画像をコピー
     ctx.putImageData(filteredImageData, 0, 0);
 
     performance.mark("wasm_end");
+
     performance.measure("wasm", "wasm_start", "wasm_end");
     result = performance.getEntriesByName('wasm');
+    performance.measure("wasm2", "wasm_start2", "wasm_end2");
+    result2 = performance.getEntriesByName('wasm2');
 
-    document.getElementById('result_wasm').textContent = "success: " + result[0].duration + "(ms)";
+    document.getElementById('result_wasm').textContent = "success: " + result[0].duration + "(ms); "
+        + result2[0].duration + "(ms)";
 }
 
 const COLOR_SUM = 765.0;
@@ -48,7 +54,7 @@ const SEPIA_G = 200.0;
 const SEPIA_B = 118.0;
 
 function doFilterJS() {
-	performance.clearMeasures();
+    performance.clearMeasures();
     performance.mark("js_start");
 
     var canvas = document.getElementById("canvas1");
@@ -57,6 +63,8 @@ function doFilterJS() {
     var height = canvas.height;
 
     var currentImage = ctx.getImageData(0, 0, width, height);
+
+    performance.mark("js_start2");
 
     var data = currentImage.data;
     var num = data.length / 4;
@@ -71,13 +79,19 @@ function doFilterJS() {
         data[i * 4 + 2] = (SEPIA_B * avg);
     }
 
+    performance.mark("js_end2");
+
     // フィルタ処理後の画像をコピー
     ctx.putImageData(currentImage, 0, 0);
 
     performance.mark("js_end");
+
     performance.measure("js", "js_start", "js_end");
     result = performance.getEntriesByName('js');
+    performance.measure("js2", "js_start2", "js_end2");
+    result2 = performance.getEntriesByName('js2');
 
-    document.getElementById('result_js').textContent = "success:" + result[0].duration + "(ms)";
+    document.getElementById('result_js').textContent = "success:" + result[0].duration + "(ms); "
+        + result2[0].duration + "(ms)";
 
 }
