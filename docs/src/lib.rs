@@ -53,12 +53,13 @@ pub extern "C" fn filter(pointer: *mut u8, max_width: usize, max_height: usize) 
     let sl = unsafe { slice::from_raw_parts_mut(pointer, byte_size) };
 
     for i in 0..pixel_num {
-        let r = sl[i * 4] as f32;
-        let g = sl[i * 4 + 1] as f32;
-        let b = sl[i * 4 + 2] as f32;
-        let avg = (r + g + b) / COLOR_SUM;
-        sl[i * 4] = (SEPIA_R * avg) as u8; // new r
-        sl[i * 4 + 1] = (SEPIA_G * avg) as u8; // new g
-        sl[i * 4 + 2] = (SEPIA_B * avg) as u8; // new b
+        let p = i * 4;
+        let r = sl[p];
+        let g = sl[p + 1];
+        let b = sl[p + 2];
+        let avg = ((r + g + b) as f32) / COLOR_SUM;
+        sl[p] = (SEPIA_R * avg) as u8; // new r
+        sl[p + 1] = (SEPIA_G * avg) as u8; // new g
+        sl[p + 2] = (SEPIA_B * avg) as u8; // new b
     }
 }
