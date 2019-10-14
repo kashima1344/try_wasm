@@ -70,13 +70,14 @@ function doFilterJS() {
     var num = data.length / 4;
 
     for (var i=0; i<num; i++) {
-        var r = data[i * 4];
-        var g = data[i * 4 + 1];
-        var b = data[i * 4 + 2];
+        var p = i * 4;
+        var r = data[p];
+        var g = data[p + 1];
+        var b = data[p + 2];
         var avg = (r + g + b) / COLOR_SUM;
-        data[i * 4] = (SEPIA_R * avg);
-        data[i * 4 + 1] = (SEPIA_G * avg);
-        data[i * 4 + 2] = (SEPIA_B * avg);
+        data[p] = (SEPIA_R * avg);
+        data[p + 1] = (SEPIA_G * avg);
+        data[p + 2] = (SEPIA_B * avg);
     }
 
     performance.mark("js_end2");
