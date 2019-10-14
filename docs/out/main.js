@@ -61,7 +61,7 @@ __exports.__wbindgen_throw = function(ptr, len) {
                     function init(wasm_path) {
                         return fetch(wasm_path)
                             .then(response => response.arrayBuffer())
-                            .then(buffer => WebAssembly.instantiate(buffer, { './rustc_h_s6g8jtwuhg': __exports }))
+                            .then(buffer => WebAssembly.instantiate(buffer, { './rustc_h_36m13hs295e': __exports }))
                             .then(({instance}) => {
                                 wasm = init.wasm = instance.exports;
                                 return;
