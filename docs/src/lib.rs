@@ -57,7 +57,7 @@ pub extern "C" fn filter(pointer: *mut u8, max_width: usize, max_height: usize) 
         let r = sl[p];
         let g = sl[p + 1];
         let b = sl[p + 2];
-        let avg = ((r + g + b) as f32) / COLOR_SUM;
+        let avg = ((r + g + b) as f32) / COLOR_SUM as f32;
         sl[p] = (SEPIA_R * avg) as u8; // new r
         sl[p + 1] = (SEPIA_G * avg) as u8; // new g
         sl[p + 2] = (SEPIA_B * avg) as u8; // new b
