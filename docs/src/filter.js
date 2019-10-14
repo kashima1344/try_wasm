@@ -48,8 +48,8 @@ function doFilter() {
     result2 = performance.getEntriesByName('wasm2');
 
     document.getElementById('result_wasm').textContent = "success: "
-        + "処理全体=" + _r1000(result[0].duration) + "(ms); "
-        + "フィルタ処理のみ=" + _r1000(result2[0].duration) + "(ms)";
+        + "処理全体=" + _fixed(result[0].duration) + "(ms); "
+        + "フィルタ処理のみ=" + _fixed(result2[0].duration) + "(ms)";
 }
 
 
@@ -100,11 +100,11 @@ function doFilterJS() {
     result2 = performance.getEntriesByName('js2');
 
     document.getElementById('result_js').textContent = "success: "
-        + "処理全体=" + _r1000(result[0].duration) + "(ms); "
-        + "フィルタ処理のみ=" + _r1000(result2[0].duration) + "(ms)";
+        + "処理全体=" + _fixed(result[0].duration) + "(ms); "
+        + "フィルタ処理のみ=" + _fixed(result2[0].duration) + "(ms)";
 
 }
 
-function _r1000(value) {
-    return Math.round(value * 1000.) / 1000;
+function _fixed(value) {
+    return value.toFixed(3);
 }
