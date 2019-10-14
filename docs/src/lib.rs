@@ -46,6 +46,26 @@ const SEPIA_R: f32 = 240.0;
 const SEPIA_G: f32 = 200.0;
 const SEPIA_B: f32 = 118.0;
 
+/*
+#[wasm_bindgen]
+pub extern "C" fn filter(sl: *mut u8, max_width: usize, max_height: usize) {
+    let pixel_num = max_width * max_height;
+    let byte_size = pixel_num * 4;
+    unsafe {
+      for i in 0..pixel_num {
+          let p = i * 4;
+          let r = *(sl.add(p + 0)) as f32;
+          let g = *(sl.add(p + 1)) as f32;
+          let b = *(sl.add(p + 2)) as f32;
+          let avg = (r + g + b) / COLOR_SUM as f32;
+          *(sl.add(p + 0)) = (SEPIA_R * avg) as u8; // new r
+          *(sl.add(p + 1)) = (SEPIA_G * avg) as u8; // new g
+          *(sl.add(p + 2)) = (SEPIA_B * avg) as u8; // new b
+      }
+    }
+}
+*/
+
 #[wasm_bindgen]
 pub extern "C" fn filter(pointer: *mut u8, max_width: usize, max_height: usize) {
     let pixel_num = max_width * max_height;
@@ -54,11 +74,11 @@ pub extern "C" fn filter(pointer: *mut u8, max_width: usize, max_height: usize) 
 
     for i in 0..pixel_num {
         let p = i * 4;
-        let r = sl[p];
-        let g = sl[p + 1];
-        let b = sl[p + 2];
-        let avg = ((r + g + b) as f32) / COLOR_SUM as f32;
-        sl[p] = (SEPIA_R * avg) as u8; // new r
+        let r = sl[p + 0] as f32;
+        let g = sl[p + 1] as f32;
+        let b = sl[p + 2] as f32;
+        let avg = (r + g + b) / COLOR_SUM as f32;
+        sl[p + 0] = (SEPIA_R * avg) as u8; // new r
         sl[p + 1] = (SEPIA_G * avg) as u8; // new g
         sl[p + 2] = (SEPIA_B * avg) as u8; // new b
     }
